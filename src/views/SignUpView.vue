@@ -40,64 +40,21 @@ export default {
   },
   methods: {
     validate: function () {
-      var valid = true;
       // Conditions
-      var length = this.$refs.length;
-      var uppercase = this.$refs.uppercase;
-      var lowercase = this.$refs.lowercase;
-      var numeric = this.$refs.numeric;
-      var start = this.$refs.start;
-      var underscore = this.$refs.underscore;
-      // Validate length
-      var lengthCheck = /^.{8,14}$/;
-      if(this.inputText.match(lengthCheck)) {
-        length.style.color = "#00aa01";
-      } else {
-        valid = false;
-        length.style.color = "#fe0000";
-      }
-      // Validate uppercase
-      var uppercaseCheck = /[A-Z]/;
-      if(this.inputText.match(uppercaseCheck)) {
-        uppercase.style.color = "#00aa01";
-      } else {
-        valid = false;
-        uppercase.style.color = "#fe0000";
-      }
-      // Validate lowercase
-      var lowercaseCheck = /[a-z].*[a-z]/;
-      if(this.inputText.match(lowercaseCheck)) {
-        lowercase.style.color = "#00aa01";
-      } else {
-        valid = false;
-        lowercase.style.color = "#fe0000";
-      }
-      // Validate numeric
-      var numericCheck = /\d/;
-      if(this.inputText.match(numericCheck)) {
-        numeric.style.color = "#00aa01";
-      } else {
-        valid = false;
-        numeric.style.color = "#fe0000";
-      }
-      // Validate start
-      var startCheck = /^[A-Z]/;
-      if(this.inputText.match(startCheck)) {
-        start.style.color = "#00aa01";
-      } else {
-        valid = false;
-        start.style.color = "#fe0000";
-      }
-      // Validate underscore
-      var underscoreCheck = /_/;
-      if(this.inputText.match(underscoreCheck)) {
-        underscore.style.color = "#00aa01";
-      } else {
-        valid = false;
-        underscore.style.color = "#fe0000";
+      var valid = true;
+      var conditions = [this.$refs.length, this.$refs.uppercase, this.$refs.lowercase, this.$refs.numeric, this.$refs.start, this.$refs.underscore];
+      var checks = [/^.{8,14}$/, /[A-Z]/, /[a-z].*[a-z]/, /\d/, /^[A-Z]/, /_/];
+      // Validation
+      for (let i = 0; i < conditions.length; i++) {
+        if(this.inputText.match(checks[i])) {
+          conditions[i].style.color = "#00aa01";
+        } else {
+          valid = false;
+          conditions[i].style.color = "#fe0000";
+        }
       }
       // Password validity
-      if(valid) {
+      if (valid) {
         this.invalidPassword = false;
       } else {
         this.invalidPassword = true;
