@@ -2,11 +2,17 @@
   <div class="home">
     <header-vue></header-vue>
     <div id="signUpPage">
-      <form action="/" method="get">
-        <label for="email">Email</label>
+      <form id="signForm" action="/" method="get">
+        <div>
+          <label for="email">Email:</label>
         <input type="email" id="email" name="Email" placeholder="Email" required><br>
-        <label for="password">Password</label>
+        </div>
+        <div>
+          <label for="password">Password:</label>
         <input type="password" id="password" name="Password" v-model="inputText" @input="validate" pattern="^(?=.*[a-z].*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_])[A-Z].{7,13}$" placeholder="Password" required><br>
+        </div>
+        
+        
         <input type="submit" id="submitButton" value="Sign Up">
         <p v-show="invalidPassword">Password is not valid. It must:
           <ul>
@@ -20,7 +26,7 @@
         </p>
       </form>
     </div>
-    <FooterVue></FooterVue>
+    <footer-vue></footer-vue>
   </div>
 </template>
 
@@ -65,10 +71,43 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 #signUpPage {
-  background-color: #ebf1df;
-  margin-left: auto;
-  margin-right: auto;
-  width: 600px;
+  background-color: #ecffe1;
+  border-radius: 20px;
+  padding:20px;
+  width: 400px;
+  height: 350px;
+  margin: 10px auto;
+  border: 1px black solid;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+#submitButton {
+  padding: 5px;
+  width: 80px;
+  height: 30px;
+  background-color: lightcyan;
+  border: 1px black solid;
+  border-radius: 10px;
+  margin-right: 40%;
+}
+
+input {
+  margin: 10px;
+  padding:5px;
+  height: 20px;
+  margin-right: 70px;
 }
 </style>
